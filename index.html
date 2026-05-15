@@ -1,3 +1,374 @@
-<html><body>
-Get bent!
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kliesaud Industries</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d1117;
+      --surface:  #161b22;
+      --border:   #21262d;
+      --teal:     #1a6b72;
+      --gold:     #c9a84c;
+      --text:     #e6edf3;
+      --muted:    #8b949e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav img { height: 44px; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,107,114,0.18) 0%, transparent 70%),
+        var(--bg);
+    }
+
+    .hero img {
+      width: min(340px, 70vw);
+      margin-bottom: 2.5rem;
+      filter: drop-shadow(0 0 32px rgba(26,107,114,0.4));
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-primary:hover { background: #22858e; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+
+    .btn-outline:hover { background: rgba(201,168,76,0.1); }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--teal);
+      margin-bottom: 2.5rem;
+    }
+
+    /* SERVICES GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--teal);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    /* CONTACT */
+    #contact { text-align: center; }
+
+    #contact p {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer img { height: 32px; opacity: 0.6; }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="logo.png" alt="Kliesaud Industries" />
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="logo.png" alt="Kliesaud Industries" />
+    <h1>Global Trade.<br /><span>Delivered.</span></h1>
+    <p>Importer &bull; Exporter</p>
+    <div class="hero-cta">
+      <a href="#services" class="btn btn-primary">Our Services</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div>
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Countries Served</div>
+      </div>
+      <div>
+        <div class="stat-num">15K+</div>
+        <div class="stat-label">Shipments Completed</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">On-Time Delivery</div>
+      </div>
+      <div>
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Years in Business</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">What We Do</div>
+    <h2>Our Services</h2>
+    <div class="divider"></div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Global Import</h3>
+        <p>Sourcing and importing goods from international markets with full compliance and efficiency.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <h3>Export Logistics</h3>
+        <p>End-to-end export management — documentation, freight, and last-mile delivery worldwide.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔗</div>
+        <h3>Supply Chain</h3>
+        <p>Strategic supply chain consulting to streamline your operations and reduce overhead.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Trade Compliance</h3>
+        <p>Expert guidance on customs regulations, tariffs, and international trade law.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">Who We Are</div>
+    <h2>Built on Trust.<br />Driven by Results.</h2>
+    <div class="divider"></div>
+    <p style="color: var(--muted); max-width: 640px; font-size: 1.05rem;">
+      Kliesaud Industries has been a trusted partner in global trade for decades.
+      We connect businesses to markets across six continents, handling every step of
+      the import and export process with precision, integrity, and care.
+    </p>
+  </section>
+
+  <!-- PLEDGE -->
+  <div id="pledge" class="stats-bar">
+    <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+      <div class="section-label" style="margin-bottom: 0.5rem;">Our Commitment</div>
+      <h2 style="margin-bottom: 1rem;">The 100+% Pledge</h2>
+      <div class="divider" style="margin: 0 auto 1.5rem;"></div>
+      <p style="color: var(--muted); max-width: 660px; margin: 0 auto; font-size: 1.05rem;">
+        Kliesaud Industries is proud to be a founding signatory of the <strong style="color: var(--text);">100+% Pledge</strong> —
+        a commitment to donate more than 100% of our annual revenue to charitable causes.
+        Through a combination of leveraged giving, forward-dated pledges, matching multipliers,
+        and frankly some accounting we don't fully understand ourselves, we have somehow
+        managed to give away more money than we make. Every year. Our CFO has stopped asking questions.
+        Our auditors have started asking a lot of them. We remain committed.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Reach Out</div>
+    <h2>Let's Work Together</h2>
+    <div class="divider" style="margin: 0 auto 2.5rem;"></div>
+    <p>Ready to expand your global reach? We'd love to hear from you.</p>
+    <a href="mailto:info@kliesaud.wtf" class="btn btn-primary">info@kliesaud.wtf</a>
+  </section>
+
+  <footer>
+    <img src="logo.png" alt="Kliesaud Industries" />
+    <p>&copy; 2026 Kliesaud Industries. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
